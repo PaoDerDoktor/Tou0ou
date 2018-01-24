@@ -1,0 +1,7 @@
+[E]Ah, vous voici enfin [playerName].
+[E]Vous pensez pouvoir nous voler nos planètes, n'est-ce pas ? Nous réduire en esclavage ?
+[P]Il n'est pas question de vous réduire en esclavage, Saxon.
+[E]Vous n'avez rien dit sur le vol de planète, gougniafier !
+[P]Taisez-vous, Saxon. Si vous voulez garder votre chère Primarias, battez moi.
+[E]Je reconnais bien là la cruauté de votre race, [playerName].
+[E]Qu'il en soit ainsi ! En garde !

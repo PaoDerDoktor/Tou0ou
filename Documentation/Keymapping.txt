@@ -1,0 +1,13 @@
+Flèche du haut   : haut
+Flèche du bas    : bas
+Flèche de droite : droite
+Flèche de gauche : gauche
+A                : dash gauche
+E                : dash droite
+Barre espace     : tir minigun
+C                : tir missile
+X                : bouclier
+V                : ultra-laser
+B                : corps-à-corps
+right shift      : bombe
+right control    : pause

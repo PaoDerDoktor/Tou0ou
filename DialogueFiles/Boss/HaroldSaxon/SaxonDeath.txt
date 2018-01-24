@@ -1,0 +1,5 @@
+[E]Bon sang ! Je perds le contrôle !
+[P]Vu les mouvements de votre appareil, je suppose que vous comptez vous rendre ?
+[E]Jamais, jeune pilote. Si je ne peut être libre, alors je mourrais.
+[E]N'est-il pas ironique qu'un membre de votre race ait un jour dit "Mieux vaut mourir debout que vivre à genoux" ?
+[P]Adieu, Saxon.
