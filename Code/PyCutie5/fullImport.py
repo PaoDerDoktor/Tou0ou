@@ -42,4 +42,5 @@ def importerModules():
     from os import (
         chdir                   #Import de la fonction permettant de naviguer dans les dossiers
     )
-    
+    #Importation de pygame
+    import pygame
