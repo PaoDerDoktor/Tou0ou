@@ -1,0 +1,9 @@
+Nom du joueur					= playerName			: string
+Nom du dernier Mecha				= lastMechaName			: string
+Niveau de chaque mecha				= mechaLevel			: dictionary(name:value)
+Niveau de chaque amélioration d'un mecha	= upgradesLevelList		: dictionary of dictionary
+Temps de jeu					= totalPlayedTime		: list[hour,minutes]
+Etat d'avancement dans les niveaux		= campaignCompletionState	: float(0<=campaignCompletionState<=1)
+Fichier de mapping personalisé			= customKeybindingFile		: string(/../../mapping.txt)
+Date/Heure de la sauvegarde			= saveTime			: string(datetime.now)
+Record mode Endurance				= record			: list[hour,minutes,seconds]

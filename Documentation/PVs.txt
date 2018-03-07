@@ -1,0 +1,9 @@
+Mecha : 		250
+Soldier : 		20
+Boss : 			300 minimum/System
+Little Obstacle : 	10
+Middle Obstacle : 	75
+Large Obstacle : 	150
+Vehicle : 		75
+Battery Weapon :	150
+Battery Structure : 	75
