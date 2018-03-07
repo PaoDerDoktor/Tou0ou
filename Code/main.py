@@ -44,78 +44,92 @@ from os import (
 #Importation de pygame
 import pygame
 from PyCutie5 import (
-	audioSelect,
-	fullImport,
-	windowBuild
-	)
+    audioSelect,
+    fullImport,
+    windowBuild
+    )
 from tou0ouClasses import (
-	chara,
-	mecha,
-	obstacles,
-	zones
-	)
+    chara,
+    mecha,
+    obstacles,
+    zones
+    )
 import pygame
 
 
+#FONCTIONS
 
-COLOR = {
-	'brighterMiamiPink'   : (249,141,201),
-	'brightMiamiPink'     : (247,101,184),
-	'reallyPaleMiamiBlue' : (215,255,254),
-	'paleMiamiBlue'       : (168,246,248),
-	'fluoMiamiBlue'       : ( 39,253,245)
-}
+def swap_colors():
+    """
+        La fonction échange les couleurs du texte et du fond dans l'accueil.
+    """
+    global currentBGColor, currentTextColor, LABEL, w
+    if currentBGColor == brighterMiamiPink:
+        currentBGColor   = brightMiamiBlue
+        currentTextColor = brighterMiamiPink
+    else:
+        currentBGColor   = brighterMiamiPink
+        currentTextColor = brightMiamiBlue
+    LABEL = TOU0OU_WELCOME_FONT.render(TOU0OU_WELCOME_TEXT, 1, currentTextColor)
+    w.fill(currentBGColor)
+    w.blit(LABEL, (4,4))
+    pygame.display.flip()
 
-
-
-def swapColors():
-	global COLOR
-	global MENU_FONT
-	global DIALOGUES_FONT
-	global TEXT_COLOR
-	global screen
-	global menuText
-	global BACKGROUND_COLOR
-
-
-	if BACKGROUND_COLOR == COLOR['brighterMiamiPink']:
-		BACKGROUND_COLOR = COLOR['fluoMiamiBlue']
-		TEXT_COLOR = COLOR['brighterMiamiPink']
-	else :
-		BACKGROUND_COLOR = COLOR['brighterMiamiPink']
-		TEXT_COLOR = COLOR['fluoMiamiBlue']
-	renderThings()
-
-
-def renderThings():
-	menuText = MENU_FONT.render("Tou0ou IS ALIVE !", True, TEXT_COLOR)
-	screen.fill(BACKGROUND_COLOR)
-	screen.blit(menuText, (0,0))
+#INITIALISATION DE PYGAME
 
 pygame.init()
-clock = pygame.time.Clock()
-pygame.font.init()
-WINDOW_ICON = pygame.image.load('../SystemFiles/Icons/Tou0ouIcon.ico')
-MONITOR_INFO = pygame.display.Info()
 
-MENU_FONT = pygame.font.Font('../SystemFiles/Fonts/RetroComputer.ttf', 72)
-DIALOGUES_FONT = pygame.font.Font('../SystemFiles/Fonts/RetroComputer.ttf', 16)
-TEXT_COLOR = COLOR['fluoMiamiBlue']
-menuText = MENU_FONT.render("Tou0ou IS ALIVE !", True, TEXT_COLOR)
-BACKGROUND_COLOR = COLOR['fluoMiamiBlue']
-screen = pygame.display.set_mode((MONITOR_INFO.current_w, MONITOR_INFO.current_h), pygame.FULLSCREEN)
+#INITIALISATION DES COULEURS
 
-screen.fill(BACKGROUND_COLOR)
-pygame.display.set_icon(WINDOW_ICON)
+brighterMiamiPink   = pygame.Color(253,   0, 225)
+brightMiamiPink     = pygame.Color(228,   0, 247)
+brightMiamiBlue     = pygame.Color(  0, 255, 213)
+brighterMiamiBlue   = pygame.Color(  0, 253, 241)
+black               = pygame.Color(  0,   0,   0)
+retroYellow         = pygame.Color(224, 198,  27)
 
-#renderThings()
+#INITIALISATION DES CONSTANTES
 
-running = True
-while running:
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			running = False
-		if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-			running = False
-		if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
-			swapColors()
+INFO_OBJECT         = pygame.display.Info()
+W_HEIGHT            = INFO_OBJECT.current_h
+W_WIDTH             = INFO_OBJECT.current_w
+AUTHOR              = ['CASTEL Benjamin', 'CRAND Julien', 'GRIVEL Sonia', 'ROUMANI Rudy']
+VERSION             = 'Tou0ou V.0.1 [ALPHA]'
+TOU0OU_ICON         = pygame.image.load('../SystemFiles/Icons/tou0ouIcon.png')
+TOU0OU_WELCOME_TEXT = 'Tou0ou is alive !'
+TOU0OU_WELCOME_FONT = pygame.font.Font('../SystemFiles/Fonts/RetroComputer.ttf', 32)
+LABEL               = TOU0OU_WELCOME_FONT.render(TOU0OU_WELCOME_TEXT, 1, brightMiamiBlue)
+
+#OBJETS
+
+currentBGColor   = brighterMiamiPink
+currentTextColor = brightMiamiBlue
+clock            = pygame.time.Clock()
+
+#PARAMETRAGE DE PYGAME
+
+w=pygame.display.set_mode((W_WIDTH,W_HEIGHT))
+pygame.display.set_caption(VERSION)
+pygame.display.set_icon(TOU0OU_ICON)
+w.fill(brighterMiamiPink)
+w.blit(LABEL, (0,0))
+
+#BOUCLE PYGAME
+
+pygame.display.flip()
+
+pygameRun = True
+
+while pygameRun :
+    pressed = pygame.key.get_pressed()
+    if pressed[pygame.K_a]:
+        swap_colors()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygameRun = False
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE :
+            pygameRun = False
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_z :
+            pygameRun = False
+    clock.tick(3)
+    swap_colors()
