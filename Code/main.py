@@ -43,17 +43,16 @@ from os import (
 )
 #Importation de pygame
 import pygame
+
 from PyCutie5 import (
     audioSelect,
     fullImport,
     windowBuild
-    )
-from tou0ouClasses import (
-    chara,
-    mecha,
-    obstacles,
-    zones
-    )
+)
+
+from tou0ouLoops import (
+    menu_loop
+)
 
 #FONCTIONS
 
@@ -91,8 +90,8 @@ retroYellow         = pygame.Color(224, 198,  27)
 INFO_OBJECT         = pygame.display.Info()
 W_HEIGHT            = INFO_OBJECT.current_h
 W_WIDTH             = INFO_OBJECT.current_w
-AUTHOR              = ['CASTEL Benjamin', 'CRAND Julien', 'GRIVEL Sonia', 'ROUMANI Rudy']
-VERSION             = 'Tou0ou V.0.1 [ALPHA]'
+AUTHOR              = ['CASTEL Benjamin', 'CRAND Juliben', 'GRIVEL Sonia', 'ROUMANI Rudy']
+VERSION             = 'Tou0ou V.0.1.1 [ALPHA]'
 TOU0OU_ICON         = pygame.image.load('../SystemFiles/Icons/tou0ouIcon.png')
 TOU0OU_WELCOME_TEXT = 'Tou0ou is alive !'
 TOU0OU_WELCOME_FONT = pygame.font.Font('../SystemFiles/Fonts/RetroComputer.ttf', 32)
@@ -109,8 +108,10 @@ clock            = pygame.time.Clock()
 w=pygame.display.set_mode((W_WIDTH,W_HEIGHT))
 pygame.display.set_caption(VERSION)
 pygame.display.set_icon(TOU0OU_ICON)
-w.fill(brighterMiamiPink)
-w.blit(LABEL, (0,0))
+
+#MODE DE TEST ?
+
+testMode = False
 
 #BOUCLE PYGAME
 
@@ -119,15 +120,21 @@ pygame.display.flip()
 pygameRun = True
 
 while pygameRun :
-    pressed = pygame.key.get_pressed()
-    if pressed[pygame.K_a]:
+    if testMode :
+        w.fill(brighterMiamiPink)
+        w.blit(LABEL, (0,0))
+        pressed = pygame.key.get_pressed()
+        if pressed[pygame.K_a]:
+            swap_colors()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygameRun = False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE :
+                pygameRun = False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_z :
+                pygameRun = False
+        clock.tick(0.5)
         swap_colors()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygameRun = False
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE :
-            pygameRun = False
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_z :
-            pygameRun = False
-    clock.tick(3)
-    swap_colors()
+    else :
+        menu_loop.menu_loop(w,clock,testMode,pygame)
+        pygameRun = False
